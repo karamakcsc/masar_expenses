@@ -136,7 +136,11 @@ app_license = "mit"
 # Document Events
 # ---------------
 # Hook on document methods and events
-
+doc_events = {
+	"Expense Entry": {
+		"on_update": "masar_expenses.api.setup"
+	}
+}
 # doc_events = {
 # 	"*": {
 # 		"on_update": "method",
@@ -242,3 +246,51 @@ app_license = "mit"
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = ["Workflow", "Workflow State", "Workflow Action Master",
+	{
+		"dt": "Print Format",
+		"filters": [
+			[
+				"name", "in", [
+					"Expense Entry"
+				]
+			]
+		]
+
+	},
+	{
+		"dt": "Custom Field",
+		"filters": [
+			[
+				"name", "in", [
+					"Accounts Settings-expense_settings",
+					"Accounts Settings-default_mode_of_payment",
+					"Accounts Settings-column_break_16",
+					"Accounts Settings-notify_all_approvers",
+					"Accounts Settings-create_journals_entries_automatically"
+				]
+			]
+		]
+	},
+	{
+		"dt": "Notification",
+			"filters": [
+[
+                                        "name", "in", [
+                                                "Expense Entry",
+                                        ]
+                                ]
+			]
+	},
+	{
+		"dt": "Report",
+			"filters": [
+				[
+					"ref_doctype", "in", [
+						"Expense Entry",
+						"Journal Entry"
+					]
+				]
+			]
+	}
+]
